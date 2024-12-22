@@ -3,6 +3,9 @@
 # dependencies
 /System/node_modules
 /System/.pnp
+/backend/node_modules
+/backend/.env
+
 .pnp.js
 
 # testing

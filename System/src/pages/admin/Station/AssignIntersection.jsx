@@ -3,6 +3,17 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
+// Import custom marker image
+import customMarkerImage from "D:/Study/5th Semester/AI/Theory/trafficproject/System/src/marker.png"; 
+
+// Define custom marker icon
+const customIcon = L.icon({
+  iconUrl: customMarkerImage,
+  iconSize: [40, 40], // Adjust the size as needed
+  iconAnchor: [20, 40], // Anchor point to center the icon
+  popupAnchor: [0, -40], // Position of the popup
+});
+
 // Fix marker icon issue with Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -34,7 +45,7 @@ const AssignIntersection = () => {
 
   const handleSelectStation = (station) => {
     setSelectedStation(station);
-    setSelectedIntersection(null);
+    setSelectedIntersection(null); // Reset the selected intersection when a station is selected
   };
 
   const handleAssign = () => {
@@ -85,6 +96,7 @@ const AssignIntersection = () => {
               <Marker
                 key={coord.id}
                 position={[coord.lat, coord.lng]}
+                icon={customIcon} // Use custom icon
                 eventHandlers={{
                   click: () => setSelectedIntersection(coord),
                 }}

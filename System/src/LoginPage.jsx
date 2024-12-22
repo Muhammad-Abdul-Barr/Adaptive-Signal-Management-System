@@ -7,25 +7,33 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const users = [
-    { username: "admin", password: "admin123", role: "admin" },
-    { username: "station", password: "station123", role: "station" },
-  ];
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const foundUser = users.find(
-      (user) => user.username === username && user.password === password
-    );
 
-    if (foundUser) {
-      if (foundUser.role === "admin") {
-        navigate("/admin/landingpage");
-      } else if (foundUser.role === "user") {
-        navigate("/station/landingpage");
+    try {
+      // Sending a POST request to the backend to verify the user
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: username, password: password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        if (data.role === "admin") {
+          navigate("/admin/landingpage");
+        } else if (data.role === "station") {
+          navigate("/station/landingpage");
+        }
+      } else {
+        alert(data.message || "Invalid username or password");
       }
-    } else {
-      alert("Invalid username or password");
+    } catch (err) {
+      console.error("Error during login:", err);
+      alert("An error occurred. Please try again later.");
     }
   };
 

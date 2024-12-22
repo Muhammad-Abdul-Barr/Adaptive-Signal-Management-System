@@ -9,7 +9,7 @@ const AdminViewLogs = () => {
       {/* Configure Station Buttons */}
       <div className="flex justify-center items-center gap-10">
         <button
-          onClick={() => navigate("view-logs/viewsystemlogs")}
+          onClick={() => navigate("/admin/view-logs/viewsystemlogs")}
           className="flex flex-col justify-center items-center bg-blue-500 text-white w-40 h-40 rounded-lg shadow-lg hover:bg-blue-600"
         >
           <span className="text-4xl">🖼</span>

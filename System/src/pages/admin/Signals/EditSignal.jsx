@@ -1,6 +1,19 @@
 import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet"; // Import Leaflet for custom icons
 import "leaflet/dist/leaflet.css";
+
+// Path to your custom marker image
+import customMarkerImage from "D:/Study/5th Semester/AI/Theory/trafficproject/System/src/marker.png"; 
+
+
+// Define the custom icon
+const customIcon = L.icon({
+  iconUrl: customMarkerImage,
+  iconSize: [40, 40], // Adjust the size as needed
+  iconAnchor: [20, 40], // Anchor point to center the icon
+  popupAnchor: [0, -40], // Position of the popup
+});
 
 const EditSignal = () => {
   const [formData, setFormData] = useState({
@@ -13,8 +26,27 @@ const EditSignal = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCoordinates, setSelectedCoordinates] = useState(null);
   const [dataArray, setDataArray] = useState([
-    // Example data for debugging
-    // { signalName: "Signal 1", signalLocation: "Location 1", trafficFlow: "High", numberOfSignals: 2, coordinates: [51.505, -0.09] }
+    {
+      signalName: "Signal 1",
+      signalLocation: "Location 1",
+      trafficFlow: "High",
+      numberOfSignals: 2,
+      coordinates: [51.505, -0.09],
+    },
+    {
+      signalName: "Signal 2",
+      signalLocation: "Location 2",
+      trafficFlow: "Low",
+      numberOfSignals: 4,
+      coordinates: [51.51, -0.1],
+    },
+    {
+      signalName: "Signal 3",
+      signalLocation: "Location 3",
+      trafficFlow: "Medium",
+      numberOfSignals: 3,
+      coordinates: [51.515, -0.11],
+    },
   ]);
 
   const handleInputChange = (e) => {
@@ -129,6 +161,7 @@ const EditSignal = () => {
             <Marker
               key={index}
               position={data.coordinates}
+              icon={customIcon} // Use custom icon
               eventHandlers={{
                 click: () => handleMarkerClick(data),
               }}
@@ -145,11 +178,6 @@ const EditSignal = () => {
       >
         Add
       </button>
-
-      {/* Debugging Section (Optional) */}
-      <pre className="mt-4 bg-gray-200 p-4 rounded-lg overflow-auto">
-        {JSON.stringify(dataArray, null, 2)}
-      </pre>
     </div>
   );
 };

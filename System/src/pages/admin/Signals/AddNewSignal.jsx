@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, useMapEvents } from "react-leaflet";
+import L from "leaflet"; // Import Leaflet to define custom icons
 import "leaflet/dist/leaflet.css";
+
+// Path to your custom image
+import customMarkerImage from "D:/Study/5th Semester/AI/Theory/trafficproject/System/src/marker.png"; 
+
+// Define the custom icon
+const customIcon = L.icon({
+  iconUrl: customMarkerImage,
+  iconSize: [40, 40], // Adjust size as needed
+  iconAnchor: [20, 40], // Anchor point to center the icon
+  popupAnchor: [0, -40], // Adjust popup position
+});
 
 const AddNewSignal = () => {
   const [formData, setFormData] = useState({
@@ -43,7 +55,9 @@ const AddNewSignal = () => {
         console.log(selectedCoordinates);
       },
     });
-    return selectedCoordinates ? <Marker position={selectedCoordinates} /> : null;
+    return selectedCoordinates ? (
+      <Marker position={selectedCoordinates} icon={customIcon} /> // Use the custom icon here
+    ) : null;
   };
 
   return (
