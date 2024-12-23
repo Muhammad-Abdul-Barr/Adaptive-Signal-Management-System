@@ -42,7 +42,7 @@ const StationConfigureIntersection = () => {
   };
 
   const handleNavigate = () => {
-    navigate("live-feeds", { state: { selectedCoordinates } }); // Replace "/next-page" with your actual route
+    navigate("watch-signal"); // Replace "/next-page" with your actual route
   };
 
   return (

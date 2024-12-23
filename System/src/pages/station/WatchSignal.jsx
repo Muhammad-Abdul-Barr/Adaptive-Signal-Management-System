@@ -3,15 +3,15 @@ import axios from "axios";
 
 const WatchSignal = () => {
   const [cameraFeeds] = useState([
-    "http://192.168.100.92:8080/video", // Signal 1
-    "http://192.168.100.92:8080/video", // Signal 2
+    "http://192.168.10.22:8080/video", // Signal 1
+    "http://192.168.10.22:8080/video", // Signal 2
     "http://ip-address:port/video", // Signal 3
     "http://ip-address:port/video", // Signal 4
   ]);
 
   const [snapshotUrls] = useState([
-    "http://localhost:8080/snapshot?url=http://192.168.100.92:8080/photo.jpg", // Signal 1
-    "http://localhost:8080/snapshot?url=http://192.168.100.92:8080/photo.jpg", // Signal 2
+    "http://localhost:8080/snapshot?url=http://192.168.10.22:8080/photo.jpg", // Signal 1
+    "http://localhost:8080/snapshot?url=http://192.168.10.22:8080/photo.jpg", // Signal 2
     "http://localhost:8080/snapshot?url=http://ip-address:port/photo.jpg", // Signal 3
     "http://localhost:8080/snapshot?url=http://ip-address:port/photo.jpg", // Signal 4
   ]);
